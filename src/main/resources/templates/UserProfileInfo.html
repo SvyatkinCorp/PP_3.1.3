@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваш профиль</title>
+</head>
+<body>
+<h1>Ваш профиль</h1>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Зарплата</th>
+
+    </tr>
+    <tbody>
+    <th:block th:each="user : ${users}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getSalary()}"></td>
+
+        </tr>
+
+    </th:block>
+    </tbody>
+</table>
+
+    <button onclick="location.href='/logout'">Выйти из профиля</button>
+<br>
+</body>
+</html>
+<!--//-->

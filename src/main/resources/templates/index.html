@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Все пользователи</title>
+</head>
+<body>
+<h1>Все пользователи</h1>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Возраст</th>
+        <th>Зарплата</th>
+    </tr>
+    <tbody>
+    <th:block th:each="user : ${users}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getSalary()}"></td>
+        <td>
+
+            <form th:action="@{/admin/deleteUser/{id}(id=${user.id})}">
+
+                <input type="hidden" name="deleteId" th:value="${user.id}">
+                <input type="submit" value="Удалить" name="deleteButton">
+            </form>
+
+            <button>
+                <a th:href="@{/admin/updateInfo/{id}(id=${user.id})}">Редактировать</a>
+            </button>
+        </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+<br>
+
+<input type="button" value="Добавить" onclick="window.location.href = '/admin/addNewUser'">
+
+</body>
+<button onclick="location.href='/logout'">Выйти из профиля</button>
+</html>
+<!--//-->
