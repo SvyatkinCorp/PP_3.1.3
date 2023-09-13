@@ -16,7 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserServiceImpl userService;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceImpl userService) {
+    public WebSecurityConfig( SuccessUserHandler successUserHandler, UserServiceImpl userService) {
         this.successUserHandler = successUserHandler;
         this.userService = userService;
     }
@@ -26,12 +26,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
+//                .anyRequest().authenticated()
                 .and()
-                .formLogin().successHandler(successUserHandler)
-                .permitAll()
+                .csrf().disable() // отключить CSRF защиту
+                .httpBasic()
+//                .formLogin().successHandler(successUserHandler)
+//                .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/login")
                 .permitAll();
