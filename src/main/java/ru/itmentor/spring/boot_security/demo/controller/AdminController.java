@@ -48,7 +48,6 @@ public class AdminController {
     @GetMapping("/updateInfo/{id}")
     public String updateUser(@PathVariable("id") int id, Model model) {
 
-
         model.addAttribute("user", userService.getUserById(id));
         return "edit";
     }

@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void updateUser(int id, User user) {
+    public void updateUser(long id, User user) {
         userDao.updateUser(id, user);
     }
 
@@ -63,4 +63,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user;
     }
 
+    public UserDao getUserDao() {
+        return userDao;
+    }
+    @Transactional
+    public void addPerson(User user) {
+        userDao.saveUser(user);
+    }
 }

@@ -14,7 +14,8 @@ public interface UserService {
 
     User getUserById(long id);
 
-    void updateUser(int id, User user);
+    void updateUser(long id, User user);
 
     User findByName(String username);
+    public void addPerson(User user);
 }
